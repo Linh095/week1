@@ -31,20 +31,59 @@ const data = {
   }
 };
 
+//loops through follow list
+// const loopThroughFollowLists = function() {
+//   for (person in data) { 
+//     const followsList = data[person].follows;
+
+//     if (followsList.length > numFollowed) {
+//       numFollowed = followsList.length;
+//       nameOfBiggestFollower = data[person].name;
+//     }
+//   }
+// };
+
 // returns the name of the individual who follows the most people
-const biggestFollower = function (){
+const biggestFollower = function() {
   let nameOfBiggestFollower = "";
   let numFollowed = 0;
   for (person in data) { 
     const followsList = data[person].follows;
+
     if (followsList.length > numFollowed) {
       numFollowed = followsList.length;
       nameOfBiggestFollower = data[person].name;
     }
+
   }
   return nameOfBiggestFollower;
 }
 console.log(biggestFollower());
+
+//check if someone is a follower
+const followerCheck = function(personFollowed, followerList) {
+  for (const person of followerList) {
+    if (personFollowed == person) {
+      return true;
+    } 
+  } 
+  return false;
+}
+
+//count the number of followers a person has
+const followerCounter = function(personID) {
+  let numberOfFollowers = 0;
+  for (person in data) {
+    const followList = data[person].follows;
+    if (followerCheck(personID, followList)) {
+      numberOfFollowers++;
+    }
+  }
+  return numberOfFollowers;
+}
+console.log(followerCounter('f01'));
+console.log(followerCounter('f05'));
+
 
 // returns the name of the most followed individual
 
